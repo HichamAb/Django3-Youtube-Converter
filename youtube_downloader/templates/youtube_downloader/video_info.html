@@ -1,0 +1,51 @@
+{% extends 'youtube_downloader/base.html' %}
+
+
+{% block content%}
+
+
+
+
+
+
+    <div class="col">
+        <div class="card" style="width: 36rem;">
+            <img src="{{thumbnail}}" class="card-img-top" alt="{{title}}">
+            <div class="card-body">
+              <p class="card-text">{{title}}</p>
+            </div>
+          </div>
+    </div>
+
+    <div class="col">  
+
+          <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Resolution</th>
+                <th scope="col">extention</th>
+                <th scope="col">Note</th>
+                <th scope="col">file size</th>
+                <th scope="col">Download</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for s in streams %}
+                <tr>
+                  <th scope="row">{{s.resolution}}</th>
+                  <td>{{s.ext}}</td>
+                  <td>{{s.format}}</td>
+                  <td>{{s.filesize}}</td>
+                  <td><button><a href="{% url 'download' id s.format %}" type={{s.ext}} download={{title}}.{{s.ext}} target="_blank"  title="{{title}}">Download</a></button></td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+            </table>
+    </div>
+
+
+
+
+
+{% endblock content %}
