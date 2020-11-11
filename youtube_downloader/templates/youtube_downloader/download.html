@@ -1,7 +1,13 @@
-% extends 'youtube_downloader/base.html' %}
+{% extends 'youtube_downloader/base.html' %}
 
 
 
 {% block content%}
-Downloading 
+{{Error}}
+your file is ready to download  
+<a href="{{media_url}}/downloaded/{{filename}}" download="{{filename}}"> link 2 </a>
+   
+  
+
+    
 {% endblock content %}

@@ -4,31 +4,16 @@
 
 {% block content%}
 {{error}}
-<div class="row">
-<form method="POST">
-    <div class="input-group col-xl">
-        {% csrf_token %}
-      <input type="text" name="videourl" id="videourl" class="form-control mr-2" placeholder="Past link here eg :https://www.youtube.com/watch?v=ALbIbStdMsQ">
-      <div class="input-group-btn">
-        <button type="submit" class="btn btn-primary">convert</button>
+    <form method="POST">
+      <div class="input-group col-xl">
+          {% csrf_token %}
+        <input type="text" name="videourl" id="videourl" class="form-control mr-2" placeholder="Past link here eg :https://www.youtube.com/watch?v=ALbIbStdMsQ">
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-primary">convert</button>
+        </div>
       </div>
-    </div>
-    <div class="row col ">
-      <div class="form-check form-check-inline  col-xs" method= "GET" >
-        <input class="form-check-input" type="radio" name="audio" id="audio" value="audio" >
-        <label class="form-check-label" for="audio">
-          audio
-        </label>
-      </div>
-      <div class="form-check form-check-inline " method= "GET">
-        <input class="form-check-input" type="radio" name="video" id="video" value="video">
-        <label class="form-check-label" for="video">
-          video
-        </label>
-      </div>
-    </div>
-    </div>
-</form>
+    </form>
+
 
 
 

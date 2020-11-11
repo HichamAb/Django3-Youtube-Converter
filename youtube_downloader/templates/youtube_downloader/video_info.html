@@ -1,25 +1,98 @@
 {% extends 'youtube_downloader/base.html' %}
-
+ 
 
 {% block content%}
+<!-- Card -->
+<div class="card card-image col"
+  style="background-image: url({{thumbnail}});">
+
+  <!-- Content -->
+  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+    <div>
+      <h5 class="pink-text"><i class="fas fa-chart-pie"></i>{{category}}</h5>
+      <h3 class="card-title pt-2"><strong>{{title}}</strong></h3>
+      <a class="btn btn-pink" href={{web_url}}><i class="fas fa-clone left"></i>Watch on Youtube</a>
+    </div>
+  </div>
+
+</div>
+<!-- Card -->
+<!-- Card -->
 
 
+<!--
 
-
-
-
-    <div class="col">
-        <div class="card" style="width: 36rem;">
+    <div class="container-fluid">
+        <div class="card mb-5" style="width: auto;">
             <img src="{{thumbnail}}" class="card-img-top" alt="{{title}}">
             <div class="card-body">
               <p class="card-text">{{title}}</p>
+              <p class="card-text">Uploaded by : {{uploader}}</p>
+              <p class="card-text">on {{uploaded}}</p>
+              <p class="card-text">duration : {{duration}}  </p>
+              <p class="card-text">view count : {{viewcount}}  </p>
             </div>
           </div>
     </div>
+-->
+<div class='container'>
+<div class='row'>
+<!-- Table for audio streams -->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Britate</th>
+      <th scope="col">File Size</th>
+      <th scope="col">Download</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for a in audio_streams %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{a.britate}}K</td>
+      <td>{{a.filesize}}</td>
+      <td><a href="{% url 'download' id a.format a.britate %}">Convert&Download</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
 
-    <div class="col">  
+<!-- Table for video streams -->  
+<div class='row'>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Resolution</th>
+      <th scope="col">File Size</th>
+      <th scope="col">Download</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    {% for v in video_streams %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{v.video_quality}} Video Quality --- {{v.resolution}}</td>
+      <td>{{v.filesize}}</td>
+      <td><a href="{% url 'download' id v.format  v.video_quality %}">Convert&Download</a></td>
+    </tr>
+    {% endfor%}
+  </tbody>
+</table>
+</div>
+</div>
 
-          <table class="table table-dark">
+
+
+
+<!---
+    <div class="container-fluid">  
+
+          <table class="table table-dark table-borderless">
             <thead>
               <tr>
                 <th scope="col">Resolution</th>
@@ -32,11 +105,20 @@
             <tbody>
                 {% for s in streams %}
                 <tr>
+                  {% if s.resolution == 'audio' %}
                   <th scope="row">{{s.resolution}}</th>
                   <td>{{s.ext}}</td>
-                  <td>{{s.format}}</td>
+                  <td>{{s.format}}|{{s.q}}</td>
                   <td>{{s.filesize}}</td>
-                  <td><button><a href="{% url 'download' id s.format %}" type={{s.ext}} download={{title}}.{{s.ext}} target="_blank"  title="{{title}}">Download</a></button></td>
+                  <td>
+                    <button class="btn btn-outline-primary">
+                      <a href="{% url 'download' id s.format title %}">link 1 </a>
+                      <a href="{{media_url}}/downloaded/{{filename}}"> link 2 </a>
+                      <a href="{{s.video_url}}" download="{{title}}{{s.ext}}"> link 3 </a>
+                      
+                    </button
+                  ></td>
+                  {% endif %}
                 </tr>
                 {% endfor %}
 
@@ -44,7 +126,7 @@
             </table>
     </div>
 
-
+-->
 
 
 
